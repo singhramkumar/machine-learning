@@ -13802,7 +13802,9 @@ AIBpFKcAAAAAmEZxCgAAAIBpFKcAAAAAmEZxCgAAAIBpvgDV+qZapkUWGwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong> Max depth of the model is 3 (max_depth = 3).The training and testing score converge and the score is high which indicates that the model do not have high bias or high variance problem for max_depth = 3. So adding more training points would not change the scores and hence will not benefit the model.</p>
+<p><strong>Answer: </strong> Max depth of the model is 3 (max_depth = 3).The training and testing score converge and the score is high which indicates that the model do not have high bias or high variance problem for max_depth = 3. Adding more training data would not improve the training and testing  scores significantly, and hence will not benefit the model.</p>
+<p>For model with max_depth 1, adding more data will not increase the traingin or testing score, as the model is suffering from high bias. So it wont benifit the model</p>
+<p>For model with max_depth 6 and 10, the learning curves are not converged yet and model is having high variance problem.By adding more traing data, traning score will decrease slightly and testing score will improve. So adding more testing data might benefit the model, as it may help in converging the learning curve.</p>
 
 </div>
 </div>
@@ -14611,7 +14613,8 @@ Using grid search we can train models for different set of parameters and and ev
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>In K-fold cross vaildation we devide the data sample in k subset. One set is used as a cross validation set and remaining k-1 subset is used to train the model. This approach provides a mechanism to perfomr k set of experiments using each sample in a k subset as a cross validation set and reming data as training data. At the end of experiments we avearage the result from K experiment.It helps in maximizing accuracy.</p>
-<p>While using grid search to optimize the parametesr, without cross validation it would be difficult to identify the problem like model overfitting and high bias. Hence it would also be difficult to predict how accurately a predictive model will perform in practice. The K-fodl validation would help  in identifying and  validating the optimal parameters to make sure that they are stable</p>
+<p>Grid search evaluates the score and selects the parameters corresponding to the best score. 
+As a test score might vary slighlty depending upon the test data, the parameter selected might not be best.Using K Fold cross validation, we can minimize the effect of this variance in test score, as multiple test set is used and average score is considered for selecting the parameters. Hence we have better chances of choosing optimal parameters by K-Fold in comparision to using a single test set.</p>
 
 </div>
 </div>
@@ -14831,10 +14834,10 @@ Predicted selling price for Client 3&#39;s home: $938,053.85
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-Predicted selling price for Client 1's home: $409,400.00
-Predicted selling price for Client 2's home: $229,682.35
-Predicted selling price for Client 3's home: $938,053.85
-The price seems reasonable considering the Statistics for Boston housing dataset in Data Exploation section</p>
+Predicted selling price for Client 1's home: $409,400.00 . The Price seems to be reasonalble as the features like room counts, LSTAT and PTRATIO are having average values and the price is close to mean and median price of home.</p>
+<p>Predicted selling price for Client 2's home: $229,682.35. The house has lower number of rooms and LSTAT value is significantly high. Also PTRATIO value is on higher. So the lower price of the house looks reasonable.</p>
+<p>Predicted selling price for Client 3's home: $938,053.85
+The price seems reasonable considering the more number of rooms and very low  LSTAT. PTRATIO for this house is also lower. All these factors are helping in higher expected price of house. So the predicted price seems reasonable is this case as well.</p>
 
 </div>
 </div>
